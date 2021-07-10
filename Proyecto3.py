@@ -21,8 +21,31 @@ LL= datos[datos.Region=="Los Lagos"]
 Ay= datos[datos.Region=="Aysén"]
 M= datos[datos.Region=="Magallanes"]
 
+d= pd.read_csv("UCI.csv", index_col=1)
+df= pd.DataFrame(d)
+df.head()
+#print(df)
 
-menuprincipal= int(input("Menu Principal: \n 1- Gráficos  \n 2-Listado de Regiones y sus Códigos \n 3- Datos de Región  \n 4-Cantidad de pacientes \n 0- Salir \n Ingrese una opción: "))
+x= list(df.columns.values)
+xs= x[-14:]
+#print(xs)
+
+
+yc = pd.read_csv("UCI.csv",",")
+y = yc.iloc[3,[-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1]]
+ys= list(y)
+#print(ys)
+
+plt.bar(xs, ys)
+plt.show
+
+
+
+
+
+
+'''
+menuprincipal= int(input("Menu Principal: \n 1- Gráficos  \n 2-Listado de Regiones y sus Códigos \n 3- Datos de Región  \n 4-Región con más y menos pacientes UCI \n 0- Salir \n Ingrese una opción: "))
 while menuprincipal != 0 :
     if menuprincipal == 1 :
         print("Gráficos")
@@ -34,7 +57,7 @@ while menuprincipal != 0 :
     elif menuprincipal == 3:
         print("Datos de Regiones")
         codigoregion=input("Ingrese el código o nombre de la región:")
-        flag= False #se utiliza una flag para crear un ciclo while
+        flag= False 
 
         while flag==False:
 
@@ -90,12 +113,13 @@ while menuprincipal != 0 :
                 codigoregion=input("Error, Ingrese un código o nombre de región válido: ")
                  
     elif menuprincipal == 4:
-        print("Cantidad de pacientes")
+        print("Cantidad de pacientes UCI")
+
     else:
         print("Porfavor digite una opcion correcta")
-    menuprincipal= int(input("Menu Principal: \n 1- Gráficos  \n 2-Listado de Regiones y sus Códigos \n 3- Datos de Región  \n 4-Cantidad de pacientes \n 0- Salir \n Ingrese una opción: "))
+    menuprincipal= int(input("Menu Principal: \n 1- Gráficos  \n 2-Listado de Regiones y sus Códigos \n 3- Datos de Región  \n 4-Región con más y menos pacientes UCI \n 0- Salir \n Ingrese una opción: "))
     
-
+'''
 
 
 
