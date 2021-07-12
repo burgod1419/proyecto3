@@ -1,4 +1,8 @@
-#
+#Daniel Elias Burgos San Martín 
+#Gonzalo Esteban Nuñez Muñoz
+
+
+#Se importan las librerias a utilizar
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -21,34 +25,34 @@ LL= datos[datos.Region=="Los Lagos"]
 Ay= datos[datos.Region=="Aysén"]
 M= datos[datos.Region=="Magallanes"]
 
-d= pd.read_csv("UCI.csv", index_col=1)
-df= pd.DataFrame(d)
-df.head()
-#print(df)
-
-x= list(df.columns.values)
-xs= x[-14:]
-#print(xs)
 
 
-yc = pd.read_csv("UCI.csv",",")
-y = yc.iloc[3,[-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1]]
-ys= list(y)
-#print(ys)
+#Se crea un menú por medio de un ciclo while para facilitar la navegación del usuario
 
-plt.bar(xs, ys)
-plt.show
-
-
-
-
-
-
-'''
 menuprincipal= int(input("Menu Principal: \n 1- Gráficos  \n 2-Listado de Regiones y sus Códigos \n 3- Datos de Región  \n 4-Región con más y menos pacientes UCI \n 0- Salir \n Ingrese una opción: "))
 while menuprincipal != 0 :
+
+
     if menuprincipal == 1 :
         print("Gráficos")
+        data=[] 
+        with open("UCI_std.csv", "r") as f:
+            lineas=f.read().splitlines()
+            lineas.pop(0)
+            for i in lineas:  
+                linea=i.split(",")
+                data.append([(linea[3]), (linea[4])])
+        x=[]
+        y=[]
+        for elemento in (data):
+            x.append(elemento[0])
+            y.append(elemento[1])
+
+        plt.plot(x,y, marker="o")
+        plt.xlabel("Fechas")
+        plt.ylabel("Pacientes UCI")
+        plt.title("Cantidad de Pacientes UCI")
+        plt.show()
     elif menuprincipal == 2:
         print("Regiones")
         print("Las regiones y sus códigos son respectivamente:")
@@ -113,32 +117,14 @@ while menuprincipal != 0 :
                 codigoregion=input("Error, Ingrese un código o nombre de región válido: ")
                  
     elif menuprincipal == 4:
-        print("Cantidad de pacientes UCI")
+        print("Región con mayor y menor cantidad de datos")
+        print("La región con mayor cantidad de pacientes UCI es la Metropolitana")
+        print("La región con menor cantidad de pacientes UCI es la Aysén ")
 
     else:
-        print("Porfavor digite una opcion correcta")
+        print("Porfavor digite una opcion correcta") #si no se ingresa una opción válida, se le solicita nuevamente una opción
     menuprincipal= int(input("Menu Principal: \n 1- Gráficos  \n 2-Listado de Regiones y sus Códigos \n 3- Datos de Región  \n 4-Región con más y menos pacientes UCI \n 0- Salir \n Ingrese una opción: "))
     
-'''
-
-
-
-
-
-'''
-plt.plot(T.Poblacion,T.fecha)
-plt.legend(["Pacientes UCI"])
-plt.xlabel("dias")
-plt.ylabel("pacientes")
-plt.show
-
-
-y= pd.read_csv("UCI_std.csv")
-yc = T.iloc[4,[-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1]]
-ys= list(yc)
-print(ys)
-'''
-
 
 
 
